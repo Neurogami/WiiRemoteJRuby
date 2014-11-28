@@ -1,4 +1,4 @@
-Neurogami::SwingSet
+Neurogami::WiiRemoteJRuby
 ===================
 
 by James Britt / Neurogami
@@ -9,17 +9,20 @@ http://www.neurogami.com
 DESCRIPTION:
 -------------------
 
-WRITE ME!
+A set of Ruby libs to make calling into the WiiRemoteJ Java jar a little nicer.  
+
+Intended for use with JRuby
+
 
 FEATURES/PROBLEMS:
 -------------------
 
-WRITE ME!
+Gives a more Ruby-ish API to the underlying Java classes.
 
 SYNOPSIS
 ------------
 
-Install the gem.
+Install the gem from gems.neurogami.com
 
 In the root of your project, run 
 
@@ -29,24 +32,28 @@ In the root of your project, run
 This will copy over the lib files under lib/ruby/wiitemotejruby
 
 
-WRITE ME!
 
 REQUIREMENTS
 -------------------
-WRITE ME!
+
+You need to be using JRuby, and have WiiRemoteJ as part of your project.
+
+The code more or less assumes you are creating a [Monkeybars](https://github.com/monkeybars/monkeybars-core) app.
+
 
 INSTALL
 -------------------
 
-sudo gem install Neurogami-WiiRemoteJRuby
+(sudo) gem install Neurogami-WiiRemoteJRuby --source http://gems/neurogami.com
 
+Or finagle an installation from the git repo.
 
 LICENSE
 --------------
 
 (The MIT License)
 
-Copyright (c) 2009 James Britt
+Copyright (c) 2015 James Britt
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -66,3 +73,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Feed your head.
+
+Hack your world.
+
+Live curious.
