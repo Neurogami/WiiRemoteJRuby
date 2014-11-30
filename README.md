@@ -38,13 +38,23 @@ REQUIREMENTS
 
 You need to be using JRuby, and have WiiRemoteJ as part of your project.
 
-The code more or less assumes you are creating a [Monkeybars](https://github.com/monkeybars/monkeybars-core) app.
+
+
+WiiRemoteJ may not work well, or at all, on certain operating systems.  Such issues seem to depend on the underlying Bluetooth stack.
+
+You will need to grab the WiiRemoteJ jar and any required Bluetooth libraries.  Please check the [WiiRemoteJ project page](https://github.com/micromu/WiiRemoteJ) for details.  
+
+Note that WiiRemoteJ was never released as open-source, and the original developer seems to have abandoned the project.  It has bee taken up by others though since there's no source code there have been no updates.
+
+WiiRemoteJRuby assumes you have already set up you project with the required WiiRemoteJ files.
+
+The code more or less assumes you are creating a [Monkeybars](https://github.com/monkeybars/monkeybars-core) app. If you wish to use the code in some other way it should not be too hard to pull out the Monkeybars stuff (just follow the errors :) ).
 
 
 INSTALL
 -------------------
 
-(sudo) gem install Neurogami-WiiRemoteJRuby --source http://gems/neurogami.com
+(sudo) gem install WiiRemoteJRuby --source http://gems/neurogami.com
 
 Or finagle an installation from the git repo.
 
