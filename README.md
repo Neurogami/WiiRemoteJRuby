@@ -44,7 +44,7 @@ WiiRemoteJ may not work well, or at all, on certain operating systems.  Such iss
 
 You will need to grab the WiiRemoteJ jar and any required Bluetooth libraries.  Please check the [WiiRemoteJ project page](https://github.com/micromu/WiiRemoteJ) for details.  
 
-Note that WiiRemoteJ was never released as open-source, and the original developer seems to have abandoned the project.  It has bee taken up by others though since there's no source code there have been no updates.
+Note that WiiRemoteJ was never released as open-source, and the original developer seems to have abandoned the project.  It has been taken up by others, but since there's no source code for the main jar there have been no updates to the core code.
 
 WiiRemoteJRuby assumes you have already set up you project with the required WiiRemoteJ files.
 
