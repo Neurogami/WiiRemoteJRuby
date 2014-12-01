@@ -46,28 +46,28 @@ class IntroController < ApplicationController
     signal :set_roll_text
   end
 
-  def do_send_note e
+  def some_action_for_b e
     warn "do_send_note #{e}"
-end
+  end
 
-def send_note_off e
-  warn "send_note_off #{e}"
-end
-    
+  def stuff_to_do_when_b_released e
+    warn "send_note_off #{e}"
+  end
+
 
   def load
 
     mappings = {
       :buttons => [
         { :buttons => :home,  :action => :was_released, :handler  => lambda {|e| exit_button_action_performed e } },
-        { :buttons => :b,     :action => :was_pressed,  :handler  => lambda {|e| do_send_note e } },
-        { :buttons => :b,     :action => :was_released, :handler  => lambda {|e| send_note_off e } },
+        { :buttons => :b,     :action => :was_pressed,  :handler  => lambda {|e| some_action_for_b e } },
+        { :buttons => :b,     :action => :was_released, :handler  => lambda {|e| stuff_to_do_when_b_released e } },
         { :buttons => :up,    :action => :was_released, :handler  => lambda {|e| do_up e } },
         { :buttons => :down,  :action => :was_released, :handler  => lambda {|e| do_down e } },
 
     ],
     :motion_sensing_event => lambda{|e|  motion_sensing_event_action_performed e },
-      #      :ir_sensing_event     => lambda{|e|  move_pitch_pointer e  }
+    #      :ir_sensing_event     => lambda{|e|  move_pitch_pointer e  }
     }
 
 
@@ -84,7 +84,7 @@ end
     # and the number of times to prompt the user to connect before giving up.
     # If you omit this number, the application will prompt the user forever.
     wiimote_me  mappings, 3
-    
+
 
   end
 

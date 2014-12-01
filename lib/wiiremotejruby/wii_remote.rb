@@ -1,5 +1,4 @@
 class Java::WiiremotejEvent::WRButtonEvent
-
   def details= h
     @details = h
   end
