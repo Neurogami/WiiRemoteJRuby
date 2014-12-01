@@ -1,0 +1,18 @@
+require 'rawr'
+Dir.glob("tasks/**/*.rake").each do |rake_file|
+  load File.expand_path(File.dirname(__FILE__) + "/" + rake_file)
+end
+
+
+
+desc "Clean and jar then execute."
+task :clean_jar_run  => ['rawr:clean', 'rawr:jar'] do
+
+  if Config::CONFIG["target_os"] =~ /linux/
+    Dir.chdir "package/jar" do
+      sh "LD_LIBRARY_PATH=lib/java/; java  -Djava.library.path=/home/james/ownCloud/repos/wii-apps/BareWiiRemoteJ/lib/java/   -Dbluecove.jsr82.psm_minimum_off=true  -jar BareWiiRemoteJ.jar "
+    end
+  else
+    puts "Currently only defined for linux"
+  end
+end
