@@ -33,10 +33,9 @@ module Neurogami
         raise "Wiimote class could not attache to Wiimote!"
       end
 
-
-      listener = WiiRemoteListener.new(remote)
-      listener.event_map(owner, map ) 
-      remote.addWiiRemoteListener(listener)
+      listener = WiiRemoteListener.new remote
+      listener.event_map owner, map
+      remote.addWiiRemoteListener listener
       remote.accelerometerEnabled = true
 
       # Need this if you want to track IR events
@@ -44,7 +43,7 @@ module Neurogami
       #  remote.enableContinuous
 
       # This works, giving both IR and pitch, roll info
-      remote.setIRSensorEnabled(true, WiiRemoteJEvent::WRIREvent.BASIC, WiiRemoteJ::IRSensitivitySettings::WII_LEVEL_3)
+      remote.setIRSensorEnabled true, WiiRemoteJEvent::WRIREvent.BASIC, WiiRemoteJ::IRSensitivitySettings::WII_LEVEL_3
 
       # But this only gives IR data; pitch  stuff ends up NaN or zero
       #remote.setIRSensorEnabled(true, WiiRemoteJEvent::WRIREvent.FULL, WiiRemoteJ::IRSensitivitySettings::WII_LEVEL_3)
@@ -57,12 +56,10 @@ module Neurogami
     end
   end
 
-
   def add_to_mappings map 
-    STDERR.puts( ":DEBUG #{__FILE__}:#{__LINE__}" ) if ENV['JAMES_SCA_JDEV_MACHINE'] # JGBDEBUG 
-    listener = WiiRemoteListener.new(self)
-    listener.event_map(nil, map ) 
-    self.addWiiRemoteListener(listener)
+    listener = WiiRemoteListener.new self
+    listener.event_map nil, map
+    self.addWiiRemoteListener listener
     # remote.accelerometerEnabled = true
     self
   end
@@ -74,13 +71,12 @@ module Neurogami
       @remote = remote
       @accelerometer_source = true #//true = wii remote, false = nunchuk
       warn "   Created WiiRemoteListener"
-      STDERR.puts( ":DEBUG #{__FILE__}:#{__LINE__}" ) if ENV['JAMES_SCA_JDEV_MACHINE'] # JGBDEBUG 
     end
 
     def event_map owner, map={}
       @owner = owner
       @maps ||= []
-      @maps <<   map
+      @maps << map
     end
 
     def accelerometer_source
@@ -126,8 +122,7 @@ module Neurogami
 
 
     def method_missing m, *args
-      m =  "  WiiRemoteListener mm: #{m}, #{args.inspect}"
-      STDERR.puts( ":DEBUG #{__FILE__}:#{__LINE__}\n#{}" ) if ENV['JAMES_SCA_JDEV_MACHINE'] # JGBDEBUG 
+      m = "WiiRemoteListener mm: #{m}, #{args.inspect}"
     end
 
 
@@ -176,27 +171,24 @@ module Neurogami
     def dispatch_on_button event
 
       @maps.each do |map|
-
         map[:buttons].each do |m|
-          mask = buttons_to_mask(m[:buttons])
+          mask = buttons_to_mask m[:buttons]
           action = m[:action]
-          # Can we do some dynaimic invokation here?
           event.details = {:buttons => m[:buttons] , :action => action };
           case action
           when :any_pressed
-            m[:handler].call(event)  if event.isAnyPressed(mask)
+            m[:handler].call(event) if event.isAnyPressed(mask)
           when :is_only_pressed
-            m[:handler].call(event)  if event.isOnlyPressed(mask)
+            m[:handler].call(event) if event.isOnlyPressed(mask)
           when :pressed
-            m[:handler].call(event)  if event.isPressed(mask)
+            m[:handler].call(event) if event.isPressed(mask)
           when :was_only_pressed
             m[:handler].call(event) if event.wasOnlyPressed(mask)
           when :was_pressed
-            m[:handler].call(event)  if event.wasPressed(mask)
+            m[:handler].call(event) if event.wasPressed(mask)
           when :was_released
-            m[:handler].call(event)  if event.wasReleased(mask)
+            m[:handler].call(event) if event.wasReleased(mask)
           end
-
         end
       end
 
@@ -204,7 +196,7 @@ module Neurogami
 
 
     def buttons_to_mask buttons
-      if buttons.is_a?(Array)
+      if buttons.is_a? Array
         mask = 0
         buttons.each do |button| 
           @@button_masks[button] ||= eval "WiiRemoteJEvent::WRButtonEvent::#{button.to_s.upcase}"
