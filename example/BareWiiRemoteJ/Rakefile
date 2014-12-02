@@ -7,12 +7,19 @@ end
 
 desc "Clean and jar then execute."
 task :clean_jar_run  => ['rawr:clean', 'rawr:jar'] do
-
-  if Config::CONFIG["target_os"] =~ /linux/
+puts "We are using #{Config::CONFIG["target_os"]  }"
+  case Config::CONFIG["target_os"]  
+    when /linux/i
+      puts "Seems we are on linux: #{Config::CONFIG["target_os"]}"
     Dir.chdir "package/jar" do
-      sh "LD_LIBRARY_PATH=lib/java/; java  -Djava.library.path=/home/james/ownCloud/repos/wii-apps/BareWiiRemoteJ/lib/java/   -Dbluecove.jsr82.psm_minimum_off=true  -jar BareWiiRemoteJ.jar "
+      sh "LD_LIBRARY_PATH=lib/java/; java  -Djava.library.path=lib/java/   -Dbluecove.jsr82.psm_minimum_off=true  -jar BareWiiRemoteJ.jar "
     end
-  else
+    when /darwin/i
+      # puts "Not ready for OSX"
+    Dir.chdir "package/jar" do
+      sh "LD_LIBRARY_PATH=lib/java/; java  -Djava.library.path=lib/java/   -Dbluecove.jsr82.psm_minimum_off=true  -jar BareWiiRemoteJ.jar "
+    end
+    else
     puts "Currently only defined for linux"
   end
 end

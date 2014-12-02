@@ -54,7 +54,7 @@ when Monkeybars::Resolver::IN_JAR_FILE
   # Files to be added only when run from inside a jar file
 end
 
-if Config::CONFIG["target_os"] =~ /linux/
+if Config::CONFIG["target_os"] =~ /linux|darwin/
   add_to_classpath '../lib/java/bluecove-gpl-2.1.0.jar'
   add_to_classpath '../lib/java/bluecove-2.1.0.jar'
 end
