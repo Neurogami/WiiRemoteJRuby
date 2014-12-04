@@ -19,7 +19,13 @@ puts "We are using #{Config::CONFIG["target_os"]  }"
     Dir.chdir "package/jar" do
       sh "LD_LIBRARY_PATH=lib/java/; java  -Djava.library.path=lib/java/   -Dbluecove.jsr82.psm_minimum_off=true  -jar BareWiiRemoteJ.jar "
     end
+
+    when /mswin32/
+    Dir.chdir "package/jar" do
+      sh "java  -Djava.library.path=lib/java/   -Dbluecove.stack.first=widcomm -Dbluecove.jsr82.psm_minimum_off=true  -jar BareWiiRemoteJ.jar "
+    end
+
     else
-    puts "Currently only defined for linux"
+    puts "Not defined for #{Config::CONFIG["target_os"]  }"
   end
 end

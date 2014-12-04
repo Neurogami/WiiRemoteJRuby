@@ -55,8 +55,14 @@ when Monkeybars::Resolver::IN_JAR_FILE
 end
 
 if Config::CONFIG["target_os"] =~ /linux|darwin/
-  add_to_classpath '../lib/java/bluecove-gpl-2.1.0.jar'
-  add_to_classpath '../lib/java/bluecove-2.1.0.jar'
+  add_to_classpath '../lib/java/bluecove-gpl-2.1.1-SNAPSHOT_63.jar'
+  add_to_classpath '../lib/java/bluecove-2.1.1-SNAPSHOT_63.jar'
+end
+
+if Config::CONFIG["target_os"] =~ /mswin32/
+  add_to_classpath '../lib/java/bluecove-2.1.1-SNAPSHOT_63.jar'
+  add_to_classpath '../lib/java/intelbth_x64.dll'  #  ??
+  add_to_load_path '../lib/java/intelbth_x64.dll'  #  ??
 end
 
 add_to_classpath "../lib/java/WiiRemoteJ.jar"

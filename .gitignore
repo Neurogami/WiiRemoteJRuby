@@ -1,3 +1,8 @@
 pkg
 example/BareWiiRemoteJ/package
 *.un~
+example/BareWiiRemoteJ/.rvmrc
+example/BareWiiRemoteJ/hide-while-exploring/
+example/BareWiiRemoteJ/jgb-notes.md
+example/BareWiiRemoteJ/run.bat
+
