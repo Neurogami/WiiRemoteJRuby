@@ -35,7 +35,9 @@
 
 
 $:.unshift 'lib/ruby'
+
 require 'swingset'
+require 'roll_panel'
 
 include  Neurogami::SwingSet::Core
 
@@ -46,19 +48,19 @@ include  Neurogami::SwingSet::Core
 class IntroFrame < Frame   
 
   FRAME_WIDTH = 600
-  FRAME_HEIGHT = 130
+  FRAME_HEIGHT = 700
 
   LABEL_WIDTH = 400
   LABEL_HEIGHT = 60
 
   # Make sure our components are available!
-  attr_accessor :default_button, :pitch_label, :roll_label, :menu_bar, :about_menu, :exit_menu
+  attr_accessor :default_button, :pitch_label, :roll_label, :menu_bar, :about_menu, :exit_menu, :roll_panel
 
   def about_menu
     @about_menu
   end
 
-  def initialize(*args)
+  def initialize *args
     super
     self.minimum_width  = FRAME_WIDTH
     self.minimum_height = FRAME_HEIGHT
@@ -118,7 +120,6 @@ class IntroFrame < Frame
 
     
     @roll_label = Label.new do |l|
-      # A nicer way to set fonts would be welcome
       l.font = java::awt.Font.new "Lucida Grande", 0, 18
       l.minimum_dimensions LABEL_WIDTH, LABEL_HEIGHT
       l.text = "Roll: 0"
@@ -134,9 +135,14 @@ class IntroFrame < Frame
     # If we have defined the layout as 'wrap 3' then the added components
     # should auto-wrap after each set of 3
     # but if you want to force a wrap you can do that too.
-   #  component_panel.add @default_button, 'grow x'
     component_panel.add @pitch_label, 'wrap'
-    component_panel.add @roll_label #,  'wrap'
+    component_panel.add @roll_label,  'wrap'
+
+    
+    @roll_panel = RollPanel.new
+    @roll_panel.preferred_size = Dimension[220, 200]     
+
+    component_panel.add @roll_panel,  'wrap'
     add component_panel
   end
 

@@ -8,16 +8,17 @@ class IntroView < ApplicationView
   # Signals are a way to have the controller pass requests to the view.
   # To understand Moneybars signals, see:
   #     http://www.monkeybars.org/understanding-signals
-  define_signal :name => :set_pitch_text , :handler => :handle_pitch_text
-  define_signal :name => :set_roll_text , :handler => :handle_roll_text
+  define_signal :name => :set_pitch_text, :handler => :handle_pitch_text
+  define_signal :name => :set_roll_text,  :handler => :handle_roll_text
+  define_signal :name => :set_roll_rads,  :handler => :handle_roll_rads
 
   Thread.abort_on_exception = true
 
   include Neurogami::WiimotableView
 
-  define_signal :name => :set_discovery_mode, :handler => :set_discovery_mode 
-  define_signal :name => :end_discovery_mode, :handler => :end_discovery_mode 
-  define_signal :name => :update_pitch_marker, :handler => :update_pitch_marker 
+  define_signal :name => :set_discovery_mode,   :handler => :set_discovery_mode 
+  define_signal :name => :end_discovery_mode,   :handler => :end_discovery_mode 
+  define_signal :name => :update_pitch_marker,  :handler => :update_pitch_marker 
 
   ####### 
 
@@ -48,6 +49,12 @@ class IntroView < ApplicationView
 
   def handle_roll_text model, transfer
     roll_label.text = transfer[:roll_text]
+  end
+
+
+  def handle_roll_rads model, transfer
+    warn "roll_panel is  #{roll_panel.inspect}" 
+    roll_panel.angle_radians = transfer[:roll_rads]
   end
 
   private

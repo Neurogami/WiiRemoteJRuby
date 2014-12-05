@@ -44,6 +44,11 @@ class IntroController < ApplicationController
 
     transfer[:roll_text] = "Roll: #{e.roll}"
     signal :set_roll_text
+
+    transfer[:roll_rads] = e.roll
+    signal :set_roll_rads
+
+    update_view
   end
 
   def some_action_for_b e
