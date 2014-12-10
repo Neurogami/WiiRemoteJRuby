@@ -11,6 +11,7 @@ class IntroView < ApplicationView
   define_signal :name => :set_pitch_text, :handler => :handle_pitch_text
   define_signal :name => :set_roll_text,  :handler => :handle_roll_text
   define_signal :name => :set_roll_rads,  :handler => :handle_roll_rads
+  define_signal :name => :set_pitch_rads, :handler => :handle_pitch_rads
 
   Thread.abort_on_exception = true
 
@@ -55,6 +56,11 @@ class IntroView < ApplicationView
   def handle_roll_rads model, transfer
     warn "roll_panel is  #{roll_panel.inspect}" 
     roll_panel.angle_radians = transfer[:roll_rads]
+  end
+
+  def handle_pitch_rads model, transfer
+    warn "pitch_panel is  #{pitch_panel.inspect}" 
+    pitch_panel.angle_radians = transfer[:pitch_rads]
   end
 
   private

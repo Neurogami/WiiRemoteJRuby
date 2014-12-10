@@ -13,16 +13,14 @@ class IntroController < ApplicationController
   #  on this.  
   #
 
-  def default_button_action_performed
-    transfer[:pitch_text] = "In-line Swing classes from Ruby rulez!"
-    signal :set_pitch_text
-  end
-
+  #def default_button_action_performed
+  #  transfer[:pitch_text] = "In-line Swing classes from Ruby rulez!"
+  #  signal :set_pitch_text
+  #end
 
   def about_menu_action_performed
     AboutController.instance.show
   end
-
 
   def exit_menu_action_performed
     close 
@@ -47,6 +45,9 @@ class IntroController < ApplicationController
 
     transfer[:roll_rads] = e.roll
     signal :set_roll_rads
+
+    transfer[:pitch_rads] = e.pitch
+    signal :set_pitch_rads
 
     update_view
   end
