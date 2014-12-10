@@ -33,8 +33,8 @@ class RollPanel < Panel
     g.color = java::awt::Color::BLACK
     centerX =  getWidth/2
     centerY = getHeight/2
-    endX = centerX - 100 * Math.sin(@rads)
-    endY = centerY - 100 * Math.cos(@rads)
+    endX = centerX - getWidth * Math.sin(@rads)
+    endY = centerY - getHeight * Math.cos(@rads)
     g.drawLine centerX, centerY, endX, endY
   end
 

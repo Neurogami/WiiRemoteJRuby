@@ -141,7 +141,7 @@ class IntroFrame < Frame
     
     @pitch_panel = PitchPanel.new
     @pitch_panel.preferred_size = Dimension[300, 300]     
-    component_panel.add @pitch_panel, "gap" #,  'wrap'
+    component_panel.add @pitch_panel, "gaptop 15, gap" #,  'wrap'
     
     @roll_panel = RollPanel.new
     @roll_panel.preferred_size = Dimension[300, 300]     
