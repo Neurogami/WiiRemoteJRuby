@@ -18,17 +18,17 @@ class RollPanel < Panel
   # Note: When calling Java stuff from JRuby you can usually 
   # use Ruby-stlye naming conventions.
   # For example, 
-  #    setFoo(n) 
+  #    setFoo(n);
   #  can be called using
   #    foo = n
   #  
   #  or 
-  #     calcSomeValue 
+  #     calcSomeValue(x); 
   #  can be used as 
-  #     calc_some_value
+  #     calc_some_value x
   #
   # But paintComponent seems to only get called when you
-  # override it using the Java name
+  # override it using the Java name 
   def paintComponent g
     g.color = java::awt::Color::BLACK
     centerX =  getWidth/2
